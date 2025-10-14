@@ -68,7 +68,7 @@ Primeiro dígito = 0
 
 Acesse a versão web com interface gráfica moderna:
 
-**[🔗 Abrir Gerador Web](docs/index.html)** (ou use GitHub Pages se publicado)
+**[🔗 Abrir Gerador Web](https://felipe-alcantara.github.io/Gerador-de-CPF-valido-em-Python/)** (ou use GitHub Pages se publicado)
 
 #### Executar localmente:
 ```bash
