@@ -315,7 +315,7 @@ def formatar_cpf_input(event):
 
 def copiar_cpf(event):
     """Copia o CPF para a área de transferência"""
-    from browser import window
+    from browser import window  # type: ignore
     
     # Identifica qual botão foi clicado
     botao = event.target
