@@ -24,6 +24,9 @@
             <button class="tab-button" id="tab-regiao" onclick="switchTab('regiao')">
                 🗺️ Por Região
             </button>
+            <button class="tab-button" id="tab-validador" onclick="switchTab('validador')">
+                🔍 Validador
+            </button>
         </div>
 
         <!-- Tab Content: Gerador Aleatório -->
@@ -61,6 +64,28 @@
                     <button id="btn-gerar-outro" class="btn-secondary">
                         🔄 Gerar Outro CPF da Mesma Região
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Validador -->
+        <div id="content-validador" class="tab-content">
+            <div class="card">
+                <h2>Validador de CPF</h2>
+                <p>Digite um CPF para verificar se é válido (aceita qualquer formato)</p>
+                
+                <div class="input-group">
+                    <input type="text" id="input-cpf" class="input-cpf" 
+                           placeholder="Digite o CPF (ex: 123.456.789-09)" 
+                           maxlength="14">
+                    <button id="btn-validar" class="btn-primary">
+                        🔍 Validar CPF
+                    </button>
+                </div>
+                
+                <div id="resultado-validador" class="resultado hidden">
+                    <div id="status-validacao"></div>
+                    <div id="detalhes-validacao"></div>
                 </div>
             </div>
         </div>
