@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Gerador de CPF Válido - Web</title>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython_stdlib.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="brython()">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎲 Gerador de CPF Válido</h1>
+            <p class="subtitle">Gerador educacional de CPF com validação por região fiscal</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" id="tab-aleatorio" onclick="switchTab('aleatorio')">
+                🎲 Gerador Aleatório
+            </button>
+            <button class="tab-button" id="tab-regiao" onclick="switchTab('regiao')">
+                🗺️ Por Região
+            </button>
+        </div>
+
+        <!-- Tab Content: Gerador Aleatório -->
+        <div id="content-aleatorio" class="tab-content active">
+            <div class="card">
+                <h2>Gerador Aleatório</h2>
+                <p>Gera um CPF válido com região fiscal aleatória</p>
+                
+                <button id="btn-gerar-aleatorio" class="btn-primary">
+                    🎲 Gerar CPF Aleatório
+                </button>
+                
+                <div id="resultado-aleatorio" class="resultado hidden">
+                    <h3>✅ CPF Gerado com Sucesso!</h3>
+                    <div class="cpf-display" id="cpf-aleatorio"></div>
+                    <div class="detalhes" id="detalhes-aleatorio"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Por Região -->
+        <div id="content-regiao" class="tab-content">
+            <div class="card">
+                <h2>Gerador por Região Fiscal</h2>
+                <p>Escolha a região fiscal desejada</p>
+                
+                <div class="regioes-grid" id="regioes-grid">
+                    <!-- Será preenchido via Python -->
+                </div>
+                
+                <div id="resultado-regiao" class="resultado hidden">
+                    <h3>✅ CPF Gerado com Sucesso!</h3>
+                    <div class="cpf-display" id="cpf-regiao"></div>
+                    <div class="detalhes" id="detalhes-regiao"></div>
+                    <button id="btn-gerar-outro" class="btn-secondary">
+                        🔄 Gerar Outro CPF da Mesma Região
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="aviso">
+                <strong>⚠️ IMPORTANTE:</strong> Este é um projeto educacional. 
+                Os CPFs gerados NÃO são reais e NÃO devem ser utilizados para fins oficiais ou fraudulentos.
+            </div>
+            <div class="autor">
+                <p>Desenvolvido com 💙 e Python por <strong>Felipe Alcântara</strong></p>
+                <p>Projeto: 2024 | Refatoração e Web: 2025</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script JavaScript para Tabs -->
+    <script>
+        function switchTab(tabName) {
+            // Remove active de todos os botões e conteúdos
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Adiciona active ao botão e conteúdo clicados
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.getElementById('content-' + tabName).classList.add('active');
+        }
+    </script>
+
+    <!-- Script Python com Brython -->
+    <script type="text/python" src="gerador.py"></script>
+</body>
+</html>

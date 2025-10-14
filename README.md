@@ -64,12 +64,30 @@ Primeiro dígito = 0
 
 ## 🚀 Como Usar
 
-### Pré-requisitos
-- Python 3.x instalado
+### 🌐 Versão Web (Recomendado!)
 
-### 📂 Arquivos Disponíveis
+Acesse a versão web com interface gráfica moderna:
 
-O projeto possui **dois geradores diferentes**:
+**[🔗 Abrir Gerador Web](docs/index.html)** (ou use GitHub Pages se publicado)
+
+#### Executar localmente:
+```bash
+# Na pasta docs
+python -m http.server 8000
+
+# Acesse: http://localhost:8000
+```
+
+**Funcionalidades da versão web:**
+- ✨ Interface moderna e responsiva
+- 🎲 Gerador aleatório com um clique
+- 🗺️ Seletor visual de regiões
+- 📱 Funciona em mobile
+- 🎨 Design bonito com gradientes
+
+---
+
+### 💻 Versão Terminal
 
 #### 1️⃣ **Gerador de CPF.py** - Gerador Aleatório Simples
 Gera um CPF completamente aleatório com região fiscal automática.
@@ -78,7 +96,7 @@ Gera um CPF completamente aleatório com região fiscal automática.
 python "Gerador de CPF.py"
 ```
 
-#### 2️⃣ **Gerador de CPF por Região.py** - Gerador Interativo 🆕
+#### 2️⃣ **Gerador de CPF por Região.py** - Gerador Interativo
 Permite escolher a região fiscal antes de gerar o CPF!
 
 ```bash
