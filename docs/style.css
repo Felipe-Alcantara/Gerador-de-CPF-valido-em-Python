@@ -192,7 +192,18 @@ body {
     margin-bottom: 15px;
 }
 
+/* CPF Container (para display + botão copiar) */
+.cpf-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
 .cpf-display {
+    flex: 1;
+    min-width: 250px;
     font-size: 2.5em;
     font-weight: bold;
     color: #667eea;
@@ -200,8 +211,42 @@ body {
     padding: 20px;
     background: white;
     border-radius: 10px;
-    margin-bottom: 15px;
     letter-spacing: 2px;
+}
+
+/* Botão Copiar */
+.btn-copiar {
+    padding: 15px 25px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    white-space: nowrap;
+}
+
+.btn-copiar:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn-copiar:active {
+    transform: translateY(0);
+}
+
+.btn-copiar.copiado {
+    background: #2196F3;
+    animation: pulseSuccess 0.5s;
+}
+
+@keyframes pulseSuccess {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 .detalhes {
@@ -319,5 +364,14 @@ body {
     
     .cpf-display {
         font-size: 1.8em;
+    }
+    
+    .cpf-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-copiar {
+        width: 100%;
     }
 }

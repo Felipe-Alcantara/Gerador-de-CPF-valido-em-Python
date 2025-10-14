@@ -311,12 +311,49 @@ def formatar_cpf_input(event):
     
     input_elem.value = formatado
 
+# ==================== FUNÇÃO COPIAR ====================
+
+def copiar_cpf(event):
+    """Copia o CPF para a área de transferência"""
+    from browser import window
+    
+    # Identifica qual botão foi clicado
+    botao = event.target
+    botao_id = botao.id
+    
+    # Pega o CPF correspondente
+    if botao_id == "btn-copiar-aleatorio":
+        cpf_texto = document["cpf-aleatorio"].text
+    elif botao_id == "btn-copiar-regiao":
+        cpf_texto = document["cpf-regiao"].text
+    else:
+        return
+    
+    # Copia para área de transferência
+    window.navigator.clipboard.writeText(cpf_texto)
+    
+    # Feedback visual
+    texto_original = botao.text
+    botao.text = "✓ Copiado!"
+    botao.classList.add("copiado")
+    
+    # Volta ao normal após 2 segundos
+    def restaurar_botao():
+        botao.text = texto_original
+        botao.classList.remove("copiado")
+    
+    window.setTimeout(restaurar_botao, 2000)
+
 # Vincula eventos
 document["btn-gerar-aleatorio"].bind("click", gerar_cpf_aleatorio)
 document["btn-gerar-outro"].bind("click", gerar_outro_cpf)
 document["btn-validar"].bind("click", validar_cpf_interface)
 document["input-cpf"].bind("input", formatar_cpf_input)
 document["input-cpf"].bind("keypress", lambda e: validar_cpf_interface(e) if e.key == "Enter" else None)
+
+# Vincula botões de copiar
+document["btn-copiar-aleatorio"].bind("click", copiar_cpf)
+document["btn-copiar-regiao"].bind("click", copiar_cpf)
 
 # Inicializa
 criar_grid_regioes()
