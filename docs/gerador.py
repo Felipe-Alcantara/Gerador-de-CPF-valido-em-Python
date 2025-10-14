@@ -1,9 +1,12 @@
 """
 Gerador de CPF Válido - Versão Web com Brython
 Autor: Felipe Alcântara
+
+NOTA: Este arquivo usa Brython e só funciona no navegador.
+O módulo 'browser' é fornecido automaticamente pelo Brython.
 """
 
-from browser import document, html
+from browser import document, html  # type: ignore
 import random
 
 # ==================== FUNÇÕES DO GERADOR ====================
