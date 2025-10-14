@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Garante UTF-8 para arquivos do projeto
+*.py text eol=lf encoding=utf-8
+*.html text eol=lf encoding=utf-8
+*.css text eol=lf encoding=utf-8
+*.js text eol=lf encoding=utf-8
+*.md text eol=lf encoding=utf-8

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Gerador de CPF Válido - Versão Web com Brython
 Autor: Felipe Alcântara
