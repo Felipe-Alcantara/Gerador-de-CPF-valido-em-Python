@@ -16,6 +16,9 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
+            <button id="btn-theme-toggle" class="theme-toggle" title="Alternar tema">
+                <span class="theme-icon">🌙</span>
+            </button>
             <h1>🎲 Gerador de CPF Válido</h1>
             <p class="subtitle">Gerador educacional de CPF com validação por região fiscal</p>
         </header>
@@ -128,6 +131,35 @@
             document.getElementById('tab-' + tabName).classList.add('active');
             document.getElementById('content-' + tabName).classList.add('active');
         }
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            const isDark = body.classList.toggle('dark-mode');
+            
+            // Atualiza o ícone
+            themeIcon.textContent = isDark ? '☀️' : '🌙';
+            
+            // Salva a preferência no localStorage
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Carrega a preferência de tema ao carregar a página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+        });
+
+        // Adiciona o evento de clique ao botão
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('btn-theme-toggle').addEventListener('click', toggleTheme);
+        });
     </script>
 
     <!-- Script Python com Brython -->
