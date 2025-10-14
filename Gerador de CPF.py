@@ -49,6 +49,35 @@ def calcular_segundo_digito(digitos, primeiro_digito):
     return 0 if resto < 2 else 11 - resto
 
 
+def identificar_regiao_fiscal(digitos):
+    """
+    Identifica a região fiscal baseada no 9º dígito do CPF.
+    O 9º dígito (índice 8) indica a unidade da Receita Federal onde o CPF foi registrado.
+    
+    Args:
+        digitos (list): Lista com os 9 primeiros dígitos do CPF
+        
+    Returns:
+        tuple: (dígito, região/estados correspondentes)
+    """
+    # Mapa do 9º dígito para região fiscal
+    mapa_regioes = {
+        0: "RS (Rio Grande do Sul)",
+        1: "DF, GO, MT, MS, TO (Distrito Federal, Goiás, Mato Grosso, Mato Grosso do Sul, Tocantins)",
+        2: "AC, AM, AP, PA, RO, RR (Acre, Amazonas, Amapá, Pará, Rondônia, Roraima)",
+        3: "CE, MA, PI (Ceará, Maranhão, Piauí)",
+        4: "AL, PB, PE, RN (Alagoas, Paraíba, Pernambuco, Rio Grande do Norte)",
+        5: "BA, SE (Bahia, Sergipe)",
+        6: "MG (Minas Gerais)",
+        7: "ES, RJ (Espírito Santo, Rio de Janeiro)",
+        8: "SP (São Paulo)",
+        9: "PR, SC (Paraná, Santa Catarina)"
+    }
+    
+    nono_digito = digitos[8]  # Índice 8 = 9º dígito
+    return nono_digito, mapa_regioes[nono_digito]
+
+
 def formatar_cpf(digitos, digito1, digito2):
     """
     Formata o CPF no padrão XXX.XXX.XXX-XX.
@@ -75,9 +104,12 @@ def exibir_mensagem_geracao(cpf_formatado, digitos, digito1, digito2):
         digito1 (int): Primeiro dígito verificador
         digito2 (int): Segundo dígito verificador
     """
-    print("\n" + "="*60)
-    print("          🎲 GERADOR DE CPF VÁLIDO 🎲")
-    print("="*60)
+    # Identifica a região fiscal
+    nono_digito, regiao = identificar_regiao_fiscal(digitos)
+    
+    print("\n" + "="*70)
+    print("               🎲 GERADOR DE CPF VÁLIDO 🎲")
+    print("="*70)
     print()
     print("📋 Processo de Geração:")
     print(f"   ├─ Dígitos aleatórios gerados: {' '.join(map(str, digitos))}")
@@ -88,9 +120,15 @@ def exibir_mensagem_geracao(cpf_formatado, digitos, digito1, digito2):
     print()
     print(f"   📄 Seu CPF válido é: {cpf_formatado}")
     print()
-    print("="*60)
+    print("🗺️  Informação da Região Fiscal:")
+    print(f"   └─ 9º dígito ({nono_digito}): {regiao}")
+    print()
+    print("="*70)
+    print("💡 Observação: O 9º dígito indica a Região Fiscal onde o CPF foi")
+    print("   registrado originalmente, não necessariamente a residência atual.")
+    print()
     print("⚠️  Importante: Este CPF foi gerado apenas para fins educacionais.")
-    print("="*60)
+    print("="*70)
     print()
 
 
