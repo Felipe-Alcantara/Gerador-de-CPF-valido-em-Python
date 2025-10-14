@@ -67,46 +67,130 @@ Primeiro dígito = 0
 ### Pré-requisitos
 - Python 3.x instalado
 
-### Executando o Gerador
+### 📂 Arquivos Disponíveis
+
+O projeto possui **dois geradores diferentes**:
+
+#### 1️⃣ **Gerador de CPF.py** - Gerador Aleatório Simples
+Gera um CPF completamente aleatório com região fiscal automática.
 
 ```bash
 python "Gerador de CPF.py"
 ```
 
-### Saída Esperada
+#### 2️⃣ **Gerador de CPF por Região.py** - Gerador Interativo 🆕
+Permite escolher a região fiscal antes de gerar o CPF!
+
+```bash
+python "Gerador de CPF por Região.py"
+```
+
+**Como funciona:**
+1. O programa exibe um menu com todas as regiões fiscais (0-9)
+2. Você escolhe qual região deseja
+3. O CPF é gerado com o 9º dígito correspondente à região escolhida
+4. Pode gerar quantos CPFs quiser da mesma região ou trocar de região
+
+---
+
+### 📊 Exemplo de Saída - Gerador Simples
 
 ```
-============================================================
-          🎲 GERADOR DE CPF VÁLIDO 🎲
-============================================================
+======================================================================
+               🎲 GERADOR DE CPF VÁLIDO 🎲
+======================================================================
 
 📋 Processo de Geração:
-   ├─ Dígitos aleatórios gerados: 1 2 3 4 5 6 7 8 9
-   ├─ Primeiro dígito verificador calculado: 0
-   └─ Segundo dígito verificador calculado: 9
+   ├─ Dígitos aleatórios gerados: 7 4 7 5 0 6 7 8 2
+   ├─ Primeiro dígito verificador calculado: 3
+   └─ Segundo dígito verificador calculado: 6
 
 ✅ CPF GERADO COM SUCESSO!
 
-   📄 Seu CPF válido é: 123.456.789-09
+   📄 Seu CPF válido é: 747.506.782-36
 
-============================================================
+🗺️  Informação da Região Fiscal:
+   └─ 9º dígito (2): AC, AM, AP, PA, RO, RR (Acre, Amazonas, Amapá, Pará, Rondônia, Roraima)
+
+======================================================================
+💡 Observação: O 9º dígito indica a Região Fiscal onde o CPF foi
+   registrado originalmente, não necessariamente a residência atual.
+
 ⚠️  Importante: Este CPF foi gerado apenas para fins educacionais.
-============================================================
+======================================================================
+```
+
+### 🗺️ Exemplo de Saída - Gerador por Região
+
+```
+======================================================================
+          🗺️  SELECIONE A REGIÃO FISCAL DO CPF  🗺️
+======================================================================
+
+   [0] - RS (Rio Grande do Sul)
+   [1] - DF, GO, MT, MS, TO (Distrito Federal, Goiás, Mato Grosso, ...)
+   [2] - AC, AM, AP, PA, RO, RR (Acre, Amazonas, Amapá, Pará, ...)
+   [3] - CE, MA, PI (Ceará, Maranhão, Piauí)
+   [4] - AL, PB, PE, RN (Alagoas, Paraíba, Pernambuco, ...)
+   [5] - BA, SE (Bahia, Sergipe)
+   [6] - MG (Minas Gerais)
+   [7] - ES, RJ (Espírito Santo, Rio de Janeiro)
+   [8] - SP (São Paulo)
+   [9] - PR, SC (Paraná, Santa Catarina)
+
+======================================================================
+Digite o número da região desejada (0-9): 8
+
+======================================================================
+               🎲 CPF GERADO COM SUCESSO! 🎲
+======================================================================
+
+📋 Processo de Geração:
+   ├─ Dígitos aleatórios (1 ao 8): 3 8 8 7 5 7 8 2
+   ├─ 9º dígito (região escolhida): 8
+   ├─ Primeiro dígito verificador calculado: 7
+   └─ Segundo dígito verificador calculado: 3
+
+✅ RESULTADO FINAL:
+
+   📄 Seu CPF válido é: 388.757.828-73
+
+🗺️  Região Fiscal Selecionada:
+   └─ Dígito 8: SP (São Paulo)
+
+======================================================================
 ```
 
 ---
 
 ## 📂 Estrutura do Código
 
-O código foi completamente refatorado e organizado em funções:
+### Gerador de CPF.py (Simples)
 
 ```python
-├── gerar_nove_digitos()           # Gera os 9 dígitos aleatórios
-├── calcular_primeiro_digito()     # Calcula 1º dígito verificador
-├── calcular_segundo_digito()      # Calcula 2º dígito verificador
-├── formatar_cpf()                 # Formata no padrão XXX.XXX.XXX-XX
-├── exibir_mensagem_geracao()      # Exibe mensagem descritiva
-└── gerar_cpf_valido()             # Função principal
+├── gerar_nove_digitos()              # Gera os 9 dígitos aleatórios
+├── calcular_primeiro_digito()        # Calcula 1º dígito verificador
+├── calcular_segundo_digito()         # Calcula 2º dígito verificador
+├── formatar_cpf()                    # Formata no padrão XXX.XXX.XXX-XX
+├── identificar_regiao_fiscal()       # Identifica a região pelo 9º dígito
+├── exibir_mensagem_geracao()         # Exibe mensagem descritiva
+└── gerar_cpf_valido()                # Função principal
+```
+
+### Gerador de CPF por Região.py (Interativo) 🆕
+
+```python
+├── obter_regioes_fiscais()           # Retorna mapa de regiões
+├── exibir_menu_regioes()             # Mostra menu de seleção
+├── solicitar_regiao()                # Solicita escolha do usuário
+├── gerar_oito_digitos_aleatorios()   # Gera 8 dígitos aleatórios
+├── gerar_nove_digitos_com_regiao()   # Adiciona 9º dígito da região
+├── calcular_primeiro_digito()        # Calcula 1º dígito verificador
+├── calcular_segundo_digito()         # Calcula 2º dígito verificador
+├── formatar_cpf()                    # Formata no padrão XXX.XXX.XXX-XX
+├── exibir_resultado()                # Exibe resultado detalhado
+├── perguntar_gerar_novamente()       # Pergunta se quer gerar outro
+└── gerar_cpf_por_regiao()            # Função principal interativa
 ```
 
 Cada função possui:
@@ -114,6 +198,23 @@ Cada função possui:
 - ✅ Nomes descritivos e claros
 - ✅ Uma única responsabilidade
 - ✅ Código limpo e pythônico
+
+---
+
+## 🗺️ Tabela de Regiões Fiscais
+
+| Dígito | Estados | Região |
+|--------|---------|--------|
+| **0** | RS | Rio Grande do Sul |
+| **1** | DF, GO, MT, MS, TO | Centro-Oeste + Tocantins |
+| **2** | AC, AM, AP, PA, RO, RR | Região Norte |
+| **3** | CE, MA, PI | Nordeste (Parte 1) |
+| **4** | AL, PB, PE, RN | Nordeste (Parte 2) |
+| **5** | BA, SE | Nordeste (Parte 3) |
+| **6** | MG | Minas Gerais |
+| **7** | ES, RJ | Sudeste (ES/RJ) |
+| **8** | SP | São Paulo |
+| **9** | PR, SC | Região Sul (PR/SC) |
 
 ---
 
@@ -131,6 +232,8 @@ Cada função possui:
 - 📚 Documentação (docstrings)
 - 🎨 Clean Code e boas práticas
 - 💡 List comprehensions
+- 🎯 Programação interativa com input
+- 🗺️ Manipulação de dados estruturados (dicionários)
 - 🐍 Código mais pythônico
 
 ---
