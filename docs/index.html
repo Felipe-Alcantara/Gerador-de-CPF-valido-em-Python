@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="./style.css?v=2">
 </head>
 <body onload="brython()">
+    <!-- Canvas para números caindo -->
+    <canvas id="matrix-canvas"></canvas>
+    
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -160,6 +163,81 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('btn-theme-toggle').addEventListener('click', toggleTheme);
         });
+
+        // ==================== RANDOM NUMBERS EFFECT ====================
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Ajusta o tamanho do canvas para a janela
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Array para armazenar os números ativos
+        let activeNumbers = [];
+        
+        // Classe para cada número
+        class FloatingNumber {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.number = Math.floor(Math.random() * 10);
+                this.opacity = 1;
+                this.fadeSpeed = Math.random() * 0.003 + 0.002; // Fade mais lento (era 0.02 + 0.01)
+                this.size = Math.random() * 20 + 14; // tamanho entre 14 e 34
+            }
+
+            update() {
+                this.opacity -= this.fadeSpeed;
+                return this.opacity > 0;
+            }
+
+            draw() {
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                
+                // Adiciona efeito de brilho (glow) - mais intenso no tema claro
+                ctx.shadowBlur = isDarkMode ? 15 : 20;
+                ctx.shadowColor = isDarkMode 
+                    ? `rgba(255, 255, 255, ${this.opacity * 0.8})` 
+                    : `rgba(0, 0, 0, ${this.opacity * 0.9})`;
+                
+                ctx.fillStyle = isDarkMode 
+                    ? `rgba(255, 255, 255, ${this.opacity})` // Branco no dark mode
+                    : `rgba(0, 0, 0, ${this.opacity})`; // Preto no tema claro
+                ctx.font = `bold ${this.size}px monospace`;
+                ctx.fillText(this.number, this.x, this.y);
+                
+                // Reset shadow para não afetar outros desenhos
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function animate() {
+            // Limpa o canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Adiciona novos números aleatoriamente com maior frequência
+            if (Math.random() < 0.7) { // 70% de chance a cada frame (era 30%)
+                activeNumbers.push(new FloatingNumber());
+            }
+
+            // Atualiza e desenha números ativos
+            activeNumbers = activeNumbers.filter(num => {
+                const alive = num.update();
+                if (alive) {
+                    num.draw();
+                }
+                return alive;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Inicia a animação
+        animate();
     </script>
 
     <!-- Script Python com Brython -->
