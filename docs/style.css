@@ -61,6 +61,27 @@ body.dark-mode #matrix-canvas {
     opacity: 0.3;
 }
 
+/* Glassmorphism Panel */
+.glass-panel {
+    position: relative;
+    z-index: 1;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+body.dark-mode .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -485,5 +506,10 @@ body.dark-mode .aviso {
     .header h1 {
         font-size: 1.8em;
         padding-right: 50px;
+    }
+    
+    .glass-panel {
+        padding: 15px;
+        margin: 10px;
     }
 }
